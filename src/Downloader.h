@@ -62,6 +62,7 @@ public slots:
    void setUserAgentString(const QString &agent);
    void setUseCustomInstallProcedures(const bool custom);
    void setMandatoryUpdate(const bool mandatory_update);
+   void setAuthorizationToken(const QString &token);
 
 private slots:
    void finished();
@@ -86,6 +87,7 @@ private:
    Ui::Downloader *m_ui;
    QNetworkReply *m_reply;
    QString m_userAgentString;
+   QString m_authorizationToken;
 
    bool m_useCustomProcedures;
    bool m_mandatoryUpdate;

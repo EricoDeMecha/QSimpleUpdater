@@ -240,6 +240,9 @@ void Updater::checkForUpdates()
    if (!userAgentString().isEmpty())
       request.setRawHeader("User-Agent", userAgentString().toUtf8());
 
+   if (!m_authorizationToken.isEmpty())
+      request.setRawHeader("Authorization", QString("Bearer %1").arg(m_authorizationToken).toUtf8());
+
    m_manager->get(request);
 }
 
@@ -369,6 +372,12 @@ void Updater::setDownloadUserName(const QString &user_name)
 void Updater::setDownloadPassword(const QString &password)
 {
    m_downloadPassword = password;
+}
+
+void Updater::setAuthorizationToken(const QString &token)
+{
+   m_authorizationToken = token;
+   m_downloader->setAuthorizationToken(token);
 }
 
 /**

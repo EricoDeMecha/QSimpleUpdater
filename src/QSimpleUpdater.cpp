@@ -434,6 +434,11 @@ void QSimpleUpdater::setDownloadPassword(const QString &url, const QString &pass
    getUpdater(url)->setDownloadPassword(password);
 }
 
+void QSimpleUpdater::setAuthorizationToken(const QString &url, const QString &token)
+{
+   getUpdater(url)->setAuthorizationToken(token);
+}
+
 /**
  * Returns the \c Updater instance registered with the given \a url.
  *

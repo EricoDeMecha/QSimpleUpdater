@@ -118,7 +118,7 @@ void Downloader::startDownload(const QUrl &url)
    QNetworkRequest request(url);
 
    request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
-   
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
    /* 10s timeout */
    request.setTransferTimeout(10000);
@@ -126,6 +126,9 @@ void Downloader::startDownload(const QUrl &url)
 
    if (!m_userAgentString.isEmpty())
       request.setRawHeader("User-Agent", m_userAgentString.toUtf8());
+
+   if (!m_authorizationToken.isEmpty())
+      request.setRawHeader("Authorization", QString("Bearer %1").arg(m_authorizationToken).toUtf8());
 
    /* Start download */
    m_reply = m_manager->get(request);
@@ -489,6 +492,11 @@ void Downloader::setDownloadDir(const QString &downloadDir)
 void Downloader::setMandatoryUpdate(const bool mandatory_update)
 {
    m_mandatoryUpdate = mandatory_update;
+}
+
+void Downloader::setAuthorizationToken(const QString &token)
+{
+   m_authorizationToken = token;
 }
 
 /**

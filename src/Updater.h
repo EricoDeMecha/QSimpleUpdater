@@ -82,6 +82,7 @@ public slots:
    void setMandatoryUpdate(const bool mandatory_update);
    void setDownloadUserName(const QString &user_name);
    void setDownloadPassword(const QString &password);
+   void setAuthorizationToken(const QString &token);
 
 private slots:
    void onReply(QNetworkReply *reply);
@@ -110,6 +111,7 @@ private:
    QString m_latestVersion;
    QString m_downloadUserName;
    QString m_downloadPassword;
+   QString m_authorizationToken;
    Downloader *m_downloader;
    QNetworkAccessManager *m_manager;
 };
